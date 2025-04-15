@@ -1,0 +1,16 @@
+﻿# Visual Studio klasörleri
+.vs/
+*.user
+*.suo
+
+# NuGet paketleri
+packages/
+
+# Derleme çıktıları
+bin/
+obj/
+
+# Diğer geçici dosyalar
+*.log
+*.tmp
+*.cache
