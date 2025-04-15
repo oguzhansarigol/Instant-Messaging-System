@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|c:\\users\\oguzhan\\desktop\\ceng\\3. sinif 2. d\u00F6nem\\web based technologies\\hw4\\oguzhan-sarigol-hw4\\oguzhan-sarigol-hw4\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|solutionrelative:oguzhan-sarigol-hw4\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\oguzhan-sarigol-hw4\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|solutionrelative:oguzhan-sarigol-hw4\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\oguzhan-sarigol-hw4\\chat.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|solutionrelative:oguzhan-sarigol-hw4\\chat.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|c:\\users\\oguzhan\\desktop\\ceng\\3. sinif 2. d\u00F6nem\\web based technologies\\hw4\\oguzhan-sarigol-hw4\\oguzhan-sarigol-hw4\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|solutionrelative:oguzhan-sarigol-hw4\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\oguzhan-sarigol-hw4\\dal\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|solutionrelative:oguzhan-sarigol-hw4\\dal\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\oguzhan-sarigol-hw4\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7B9E0F5-5A56-4ECA-B897-1BE579643B78}|Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4.csproj|solutionrelative:oguzhan-sarigol-hw4\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\.gitignore",
+              "RelativeDocumentMoniker": "Oguzhan-Sarigol-HW4\\.gitignore",
+              "ToolTip": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\.gitignore",
+              "RelativeToolTip": "Oguzhan-Sarigol-HW4\\.gitignore",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG/SURBVDhPrZRNTgIxFMerDIaEhHgU97JxwUKGGaNeQJdyCY0XUBDWGhg4AB\u002BuvQk7OQCRFTP1fXWmMxUMCT94ee177eu/LVQdFK31kTSJ0WgEIa0SMJ2A6QTHcF9iicQqlYpa/6zv2\u002B2HD5nuEkWR/l4udRzHZBtjGzFor1YrPR6P9WKx0MNhpN96vTuZThyLJ1AJLK/iJFFxjBanBsXIozqkWq2qev1c1Wq19063e0ZBwBNP4JaQ6WRC/i8ajQb5wWBAvnxyghpOqQPkC8L5IEEQKjgxaqOTFsCd65tb6nmlkur1\u002BxwXCgX58KfT7QptwvCK52wrSLcJvtUKOABkQ6HFXwbGsmMRBkchzpjNphLZDSrEn5G1qnsp\u002BPEtheloXouRnXDTTjhb5tXmeyg0IgzuliHp\u002By0OANbiOCDXp1IYo3mMUxBT8/mMA/8QhGH6ZzC4Zwi5ZqoQB9M3h62I/\u002B/SAQpniBmtPvdQyGeYUdgyX8pl05eIBSxmTzQYEYbc42AuJQWLGJNQEcrJG4A4BTHneSW2sqfKOyybkxXMPbAvrx3IsyLzkPJFmUcWYtDntjG6lIvnp8cvKXNIlPoFvstpJRlQPIAAAAAASUVORK5CYII=",
+              "WhenOpened": "2025-04-15T15:57:07.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dashboard.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Dashboard.aspx.cs",
+              "RelativeDocumentMoniker": "Oguzhan-Sarigol-HW4\\Dashboard.aspx.cs",
+              "ToolTip": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Dashboard.aspx.cs",
+              "RelativeToolTip": "Oguzhan-Sarigol-HW4\\Dashboard.aspx.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T15:47:43.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Login.aspx.cs",
+              "RelativeDocumentMoniker": "Oguzhan-Sarigol-HW4\\Login.aspx.cs",
+              "ToolTip": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Login.aspx.cs",
+              "RelativeToolTip": "Oguzhan-Sarigol-HW4\\Login.aspx.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAywAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T15:47:36.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Chat.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Chat.aspx.cs",
+              "RelativeDocumentMoniker": "Oguzhan-Sarigol-HW4\\Chat.aspx.cs",
+              "ToolTip": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Chat.aspx.cs",
+              "RelativeToolTip": "Oguzhan-Sarigol-HW4\\Chat.aspx.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAowAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T15:47:08.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "Oguzhan-Sarigol-HW4\\Hubs\\ChatHub.cs",
+              "ToolTip": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "Oguzhan-Sarigol-HW4\\Hubs\\ChatHub.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T14:48:30.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DatabaseHelper.cs",
+              "DocumentMoniker": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\DAL\\DatabaseHelper.cs",
+              "RelativeDocumentMoniker": "Oguzhan-Sarigol-HW4\\DAL\\DatabaseHelper.cs",
+              "ToolTip": "C:\\Users\\OGUZHAN\\Desktop\\CENG\\3. SINIF 2. D\u00D6NEM\\WEB BASED TECHNOLOGIES\\HW4\\Oguzhan-Sarigol-HW4\\Oguzhan-Sarigol-HW4\\DAL\\DatabaseHelper.cs",
+              "RelativeToolTip": "Oguzhan-Sarigol-HW4\\DAL\\DatabaseHelper.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAYwEcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:28:26.292Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
