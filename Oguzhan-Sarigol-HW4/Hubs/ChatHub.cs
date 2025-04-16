@@ -20,6 +20,19 @@ namespace Oguzhan_Sarigol_HW4.Hubs
             // Veritabanına kaydet
             DatabaseHelper.SaveMessage(senderUsername, receiverUsername, message);
         }
+        public void MarkAsRead(string senderUsername, string receiverUsername)
+        {
+            int senderId = DatabaseHelper.GetUserIdByUsername(senderUsername);
+            int receiverId = DatabaseHelper.GetUserIdByUsername(receiverUsername);
+
+            // Veritabanında IsRead = true yap
+            DatabaseHelper.MarkMessagesAsRead(receiverId, senderId);
+
+            // Tik ikonlarını güncellemek için her iki tarafa event gönder
+            Clients.User(senderUsername).updateReadStatus(receiverUsername);
+        }
+
+
         public void NotifyTyping(string senderUsername, string receiverUsername)
         {
             Clients.User(receiverUsername).showTyping(senderUsername);

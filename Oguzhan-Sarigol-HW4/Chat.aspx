@@ -47,6 +47,20 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: #0d1b28;
+            display: flex;
+            align-items: center;
+        }
+        .chat-header-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-weight: bold;
         }
         .chat-box {
             background-color: white;
@@ -59,29 +73,36 @@
         .message-input {
             display: flex;
             margin-top: 15px;
+            background-color: white;
+            border-radius: 24px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
         .message-input input {
             flex: 1;
             padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: none;
+            border-radius: 24px;
             font-size: 14px;
+            outline: none;
+            background: transparent;
         }
         .message-input button {
             padding: 12px 20px;
             background-color: #3498db;
             color: white;
             border: none;
-            border-radius: 5px;
-            margin-left: 10px;
+            border-radius: 24px;
             cursor: pointer;
             font-weight: bold;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
         }
         #typingInfo {
             margin-top: 8px;
             font-size: 12px;
             font-style: italic;
             color: gray;
+            height: 16px;
         }
         .dropdown {
             margin-bottom: 15px;
@@ -127,7 +148,70 @@
             background-size: 12px;
         }
 
-
+        /* Yeni chat kutuları için stiller */
+        .message {
+            display: flex;
+            flex-direction: column;
+            max-width: 70%;
+            margin-bottom: 14px;
+            clear: both;
+        }
+        
+        .message-incoming {
+            align-self: flex-start;
+        }
+        
+        .message-outgoing {
+            align-self: flex-end;
+        }
+        
+        .message-bubble {
+            border-radius: 12px;
+            padding: 12px 16px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            word-break: break-word;
+        }
+        
+        .message-incoming .message-bubble {
+            background-color: #E6F5FF; /* Soft blue */
+            border: 1px solid #D1EAFF;
+        }
+        
+        .message-outgoing .message-bubble {
+            background-color: #e8ebff; /* Soft pink */
+            border: 1px solid #d8ddff;
+        }
+        
+        .message-sender {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 3px;
+            color: #555;
+        }
+        
+        .message-content {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .message-meta {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 11px;
+            color: #8c8c8c;
+            margin-top: 2px;
+        }
+        
+        .message-time {
+            margin-right: 4px;
+        }
+        
+        #chatBox {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -142,66 +226,174 @@
                         <i class="fas fa-arrow-left"></i> Back to Dashboard
                     </a>
                 </div>
-
             </div>
             <div class="main-chat">
-                <div class="chat-header">Real-time Chat</div>
                 <div class="dropdown">
-
                     <asp:DropDownList ID="ddlUsers" runat="server" CssClass="custom-select" Width="300px" />
-
                 </div>
-                <asp:Literal ID="chatBoxLiteral" runat="server" EnableViewState="false" />
+                <div class="chat-header">
+                    <div class="chat-header-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>Chat with <span id="selectedUserName"></span></div>
+                </div>
                 <div class="chat-box" id="chatBox"></div>
                 <div id="typingInfo"></div>
                 <div class="message-input">
                     <input type="text" id="txtMessage" placeholder="Type your message..." />
-                    <button type="button" id="btnSend">Send</button>
+                    <button type="button" id="btnSend">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
                 </div>
             </div>
         </div>
     </form>
-    <script>
-        $(function () {
-            var username = "<%= Session["Username"] %>";
-            var chat = $.connection.chatHub;
+   <script>
+       $(function () {
+           var username = "<%= Session["Username"] %>";
+           var chat = $.connection.chatHub;
 
-            chat.client.receiveMessage = function (sender, message, timestamp, isRead) {
-                var statusText = isRead ? "<span style='color:green;font-size:10px;'>(read)</span>" : "<span style='color:gray;font-size:10px;'>(unread)</span>";
-                $('#chatBox').append('<div><b>' + sender + ':</b> ' + message + ' <span style="font-size:10px; color:#999;">(' + timestamp + ')</span> ' + statusText + '</div>');
-            };
+           // Seçili kullanıcı ismini göster
+           function updateSelectedUser() {
+               var selectedText = $('#<%= ddlUsers.ClientID %> option:selected').text();
+               $('#selectedUserName').text(selectedText);
+           }
 
-            chat.client.showTyping = function (sender) {
-                $('#typingInfo').text(sender + ' is typing...');
-                clearTimeout(window.typingTimeout);
-                window.typingTimeout = setTimeout(function () {
-                    $('#typingInfo').text('');
-                }, 2000);
-            };
+           // İlk yüklemede seçili kullanıcıyı göster
+           updateSelectedUser();
 
-            $.connection.hub.qs = { 'username': username };
+           // Dropdown değiştiğinde kullanıcı ismini güncelle
+           $('#<%= ddlUsers.ClientID %>').change(function () {
+               updateSelectedUser();
+               // Sohbet geçmişini temizle
+               $('#chatBox').empty();
+               // Yeni kullanıcıyla olan mesajları yükle
+               var receiver = $(this).val();
+               chat.server.markAsRead(username, receiver);
 
-            $.connection.hub.start().done(function () {
-                $('#btnSend').click(function () {
-                    var receiver = $('#<%= ddlUsers.ClientID %>').val();
-                    var message = $('#txtMessage').val();
-                    chat.server.send(username, receiver, message);
-                    $('#txtMessage').val('').focus();
-                });
+               // Sayfayı yeniden yükle
+               location.reload();
+           });
 
-                $('#txtMessage').keypress(function (e) {
-                    if (e.which === 13) {
-                        $('#btnSend').click();
-                        return false;
-                    }
-                });
+           // Mouse ile chatbox'a girince mesajları okundu say
+           $('#chatBox').on('mouseenter', function () {
+               var receiver = $('#<%= ddlUsers.ClientID %>').val();
+               chat.server.markAsRead(username, receiver);
+           });
 
-                $('#txtMessage').on('input', function () {
-                    var receiver = $('#<%= ddlUsers.ClientID %>').val();
-                    chat.server.notifyTyping(username, receiver);
-                });
-            });
-        });
-    </script>
+           // Eski mesajları LoadChatHistory ile yükle
+           chat.client.receiveMessage = function (sender, message, timestamp, isMine) {
+               let messageType = isMine ? 'message-outgoing' : 'message-incoming';
+               let readStatus = "";
+
+               if (isMine) {
+                   readStatus = "<i class='fas fa-check' style='color:gray; font-size:11px; margin-left:4px;'></i>";
+               }
+
+               let messageHtml = `
+                   <div class="message ${messageType}">
+                       <div class="message-bubble">
+                           <div class="message-sender">${sender}</div>
+                           <div class="message-content">${message}</div>
+                           <div class="message-meta">
+                               <span class="message-time">${timestamp}</span>
+                               ${readStatus}
+                           </div>
+                       </div>
+                   </div>
+               `;
+
+               $('#chatBox').append(messageHtml);
+               $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
+           };
+
+           // "yazıyor" bilgisi
+           chat.client.showTyping = function (sender) {
+               $('#typingInfo').text(sender + ' is typing...');
+               setTimeout(() => $('#typingInfo').text(""), 1500);
+           };
+
+           // Okundu güncellemesi
+           chat.client.updateReadStatus = function (fromUser) {
+               $('.message-outgoing .fas.fa-check').each(function () {
+                   $(this).removeClass('fa-check').addClass('fa-check-double').css('color', 'deepskyblue');
+               });
+           };
+
+           // Bağlantı açıldığında
+           $.connection.hub.qs = { 'username': username };
+           $.connection.hub.start().done(function () {
+               $('#btnSend').click(function () {
+                   var receiver = $('#<%= ddlUsers.ClientID %>').val();
+                   var message = $('#txtMessage').val();
+                   
+                   if (message.trim() !== '') {
+                       chat.server.send(username, receiver, message);
+                       $('#txtMessage').val('').focus();
+                   }
+               });
+
+               $('#txtMessage').keypress(function (e) {
+                   if (e.which === 13) {
+                       $('#btnSend').click();
+                       return false;
+                   }
+               });
+
+               $('#txtMessage').on('input', function () {
+                   var receiver = $('#<%= ddlUsers.ClientID %>').val();
+                   chat.server.notifyTyping(username, receiver);
+               });
+
+               // Sayfa yüklenince ilk markAsRead
+               var initialReceiver = $('#<%= ddlUsers.ClientID %>').val();
+               chat.server.markAsRead(username, initialReceiver);
+           });
+
+           // DropDown değişince tekrar markAsRead
+           $('#<%= ddlUsers.ClientID %>').change(function () {
+               var receiver = $(this).val();
+               chat.server.markAsRead(username, receiver);
+           });
+           
+           // Sayfanın sonuna kaydır
+           function scrollToBottom() {
+               $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
+           }
+           
+           // Sayfa yüklendiğinde en alta kaydır
+           setTimeout(scrollToBottom, 100);
+       });
+   </script>
+
+   <script>
+       // Bu script C# tarafından LoadChatHistory metodu içerisindeki
+       // ScriptManager.RegisterStartupScript ile çağrılan JS kodunu yakalamak için kullanılır
+
+       // Eski mesajları yüklerken de yeni format kullanılsın
+       function formatOldMessage(senderName, message, time, isRead, isMine) {
+           let messageType = isMine ? 'message-outgoing' : 'message-incoming';
+           let readStatus = "";
+
+           if (isMine) {
+               readStatus = isRead
+                   ? "<i class='fas fa-check-double' style='color:deepskyblue; font-size:11px; margin-left:4px;'></i>"
+                   : "<i class='fas fa-check' style='color:gray; font-size:11px; margin-left:4px;'></i>";
+           }
+
+           return `
+               <div class="message ${messageType}">
+                   <div class="message-bubble">
+                       <div class="message-sender">${senderName}</div>
+                       <div class="message-content">${message}</div>
+                       <div class="message-meta">
+                           <span class="message-time">${time}</span>
+                           ${readStatus}
+                       </div>
+                   </div>
+               </div>
+           `;
+       }
+   </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Oguzhan_Sarigol_HW4.DAL;
 
@@ -55,6 +56,7 @@ namespace Oguzhan_Sarigol_HW4
         private void LoadChatHistory()
         {
             int myId = Convert.ToInt32(Session["UserID"]);
+            string myUsername = Session["Username"].ToString();
             string selectedUsername = ddlUsers.SelectedValue;
             int otherId = DatabaseHelper.GetUserIdByUsername(selectedUsername);
 
@@ -62,17 +64,22 @@ namespace Oguzhan_Sarigol_HW4
 
             foreach (DataRow row in dt.Rows)
             {
-                string senderName = row["SenderID"].ToString() == myId.ToString() ? (string)Session["Username"] : selectedUsername;
+                int senderId = Convert.ToInt32(row["SenderID"]);
+                string senderName = senderId == myId ? myUsername : selectedUsername;
                 string message = row["MessageText"].ToString();
                 string time = Convert.ToDateTime(row["ChatTime"]).ToString("g");
                 bool isRead = Convert.ToBoolean(row["IsRead"]);
+                bool isMine = senderId == myId;
 
-                string isReadText = isRead ? "<span style='color:green;font-size:10px;'>(read)</span>" : "<span style='color:gray;font-size:10px;'>(unread)</span>";
+                // Yeni mesaj formatını kullanarak eski mesajları ekle
+                string script = $"$('#chatBox').append(formatOldMessage({Newtonsoft.Json.JsonConvert.SerializeObject(senderName)}, " +
+                            $"{Newtonsoft.Json.JsonConvert.SerializeObject(message)}, " +
+                            $"{Newtonsoft.Json.JsonConvert.SerializeObject(time)}, " +
+                            $"{isRead.ToString().ToLower()}, " +
+                            $"{isMine.ToString().ToLower()}));";
 
-                string html = $"<div><b>{senderName}:</b> {message} <span style='font-size:10px;color:#999;'>({time})</span> {isReadText}</div>";
-                chatBoxLiteral.Text += html;
+                ScriptManager.RegisterStartupScript(this, GetType(), Guid.NewGuid().ToString(), script, true);
             }
         }
-
     }
 }
