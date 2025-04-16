@@ -19,7 +19,14 @@ namespace Oguzhan_Sarigol_HW4
             {
                 LoadUsers();
                 PreselectUser();
+                LoadChatHistory();// önce mesajları göster
+                                  // sonra okundu olarak işaretle                 
+                int myId = Convert.ToInt32(Session["UserID"]);
+                string selectedUsername = ddlUsers.SelectedValue;
+                int otherId = DatabaseHelper.GetUserIdByUsername(selectedUsername);
+                DatabaseHelper.MarkMessagesAsRead(myId, otherId);
             }
+
         }
 
         private void LoadUsers()
@@ -45,5 +52,27 @@ namespace Oguzhan_Sarigol_HW4
                     item.Selected = true;
             }
         }
+        private void LoadChatHistory()
+        {
+            int myId = Convert.ToInt32(Session["UserID"]);
+            string selectedUsername = ddlUsers.SelectedValue;
+            int otherId = DatabaseHelper.GetUserIdByUsername(selectedUsername);
+
+            DataTable dt = DatabaseHelper.GetChatHistory(myId, otherId);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string senderName = row["SenderID"].ToString() == myId.ToString() ? (string)Session["Username"] : selectedUsername;
+                string message = row["MessageText"].ToString();
+                string time = Convert.ToDateTime(row["ChatTime"]).ToString("g");
+                bool isRead = Convert.ToBoolean(row["IsRead"]);
+
+                string isReadText = isRead ? "<span style='color:green;font-size:10px;'>(read)</span>" : "<span style='color:gray;font-size:10px;'>(unread)</span>";
+
+                string html = $"<div><b>{senderName}:</b> {message} <span style='font-size:10px;color:#999;'>({time})</span> {isReadText}</div>";
+                chatBoxLiteral.Text += html;
+            }
+        }
+
     }
 }

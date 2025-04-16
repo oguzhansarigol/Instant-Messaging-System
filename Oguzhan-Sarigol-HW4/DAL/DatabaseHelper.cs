@@ -46,26 +46,100 @@ namespace Oguzhan_Sarigol_HW4.DAL
                 return dt;
             }
         }
-
-        public static void SaveMessage(string senderUsername, string receiverUsername, string message)
+        public static int GetUserIdByUsername(string username)
         {
             using (OleDbConnection conn = new OleDbConnection(connStr))
             {
                 conn.Open();
-                string query = "INSERT INTO CHAT (SenderUsername, ReceiverUsername, MessageText, ChatTime, IsRead) " +
-                               "VALUES (?, ?, ?, ?, ?)";
-
+                string query = "SELECT UserID FROM USERS WHERE Username=@username";
+                OleDbCommand cmd = new OleDbCommand(query, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : -1;
+            }
+        }
+        public static void MarkMessagesAsRead(int receiverId, int senderId)
+        {
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                conn.Open();
+                string query = "UPDATE CHAT SET IsRead = true WHERE ReceiverID = ? AND SenderID = ? AND IsRead = false";
                 using (OleDbCommand cmd = new OleDbCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("?", senderUsername);
-                    cmd.Parameters.AddWithValue("?", receiverUsername);
-                    cmd.Parameters.AddWithValue("?", message);
-                    cmd.Parameters.AddWithValue("?", DateTime.Now);
-                    cmd.Parameters.AddWithValue("?", false);
-
+                    cmd.Parameters.AddWithValue("?", receiverId); // bu kullanıcı
+                    cmd.Parameters.AddWithValue("?", senderId);   // mesaj atan kişi
                     cmd.ExecuteNonQuery();
                 }
             }
         }
+
+        public static DataTable GetChatHistory(int user1Id, int user2Id)
+        {
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                conn.Open();
+                string query = @"SELECT * FROM CHAT 
+                         WHERE (SenderID = ? AND ReceiverID = ?) OR (SenderID = ? AND ReceiverID = ?)
+                         ORDER BY ChatTime ASC";
+
+                using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("?", user1Id);
+                    cmd.Parameters.AddWithValue("?", user2Id);
+                    cmd.Parameters.AddWithValue("?", user2Id);
+                    cmd.Parameters.AddWithValue("?", user1Id);
+
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static void SaveMessage(string senderUsername, string receiverUsername, string message)
+        {
+            try
+            {
+                int senderId = GetUserIdByUsername(senderUsername);
+                int receiverId = GetUserIdByUsername(receiverUsername);
+
+                if (senderId == -1 || receiverId == -1)
+                {
+                    System.Diagnostics.Debug.WriteLine("[ERROR] Kullanıcı ID bulunamadı.");
+                    return;
+                }
+
+                using (OleDbConnection conn = new OleDbConnection(connStr))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO CHAT (SenderID, ReceiverID, MessageText, ChatTime, IsRead) " +
+                                   "VALUES (?, ?, ?, ?, ?)";
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        // OleDb soru işaretleri sırasına göre parametre ekliyor
+                        cmd.Parameters.Add("SenderID", OleDbType.Integer).Value = senderId;
+                        cmd.Parameters.Add("ReceiverID", OleDbType.Integer).Value = receiverId;
+                        cmd.Parameters.Add("MessageText", OleDbType.VarChar).Value = message;
+                        cmd.Parameters.Add("ChatTime", OleDbType.Date).Value = DateTime.Now;
+                        cmd.Parameters.Add("IsRead", OleDbType.Boolean).Value = false;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                System.Diagnostics.Debug.WriteLine("[INFO] Mesaj veritabanına kaydedildi.");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("[ERROR] Mesaj kaydedilemedi: " + ex.Message);
+                // Debug için hata mesajını konsola yazdırın
+                Console.WriteLine("[ERROR] Mesaj kaydedilemedi: " + ex.Message);
+            }
+        }
+
+
+
     }
 }

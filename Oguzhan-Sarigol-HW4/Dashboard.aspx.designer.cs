@@ -42,6 +42,24 @@ namespace Oguzhan_Sarigol_HW4
         protected global::System.Web.UI.WebControls.Label lblRole;
 
         /// <summary>
+        /// ltUserInitial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltUserInitial;
+
+        /// <summary>
+        /// lblNameShort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNameShort;
+
+        /// <summary>
         /// btnLogout control.
         /// </summary>
         /// <remarks>
@@ -51,13 +69,13 @@ namespace Oguzhan_Sarigol_HW4
         protected global::System.Web.UI.WebControls.Button btnLogout;
 
         /// <summary>
-        /// lblContacts control.
+        /// ltContactCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContacts;
+        protected global::System.Web.UI.WebControls.Literal ltContactCount;
 
         /// <summary>
         /// rptContacts control.

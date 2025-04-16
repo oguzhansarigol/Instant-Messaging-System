@@ -21,6 +21,17 @@ namespace Oguzhan_Sarigol_HW4
                 LoadContacts();
             }
         }
+        protected string GetInitials(string fullName)
+        {
+            if (string.IsNullOrWhiteSpace(fullName))
+                return "";
+
+            string[] parts = fullName.Trim().Split(' ');
+            if (parts.Length == 1)
+                return parts[0].Substring(0, 1).ToUpper();
+
+            return (parts[0][0].ToString() + parts[parts.Length - 1][0].ToString()).ToUpper();
+        }
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {

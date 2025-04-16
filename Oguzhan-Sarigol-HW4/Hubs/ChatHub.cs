@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 using Oguzhan_Sarigol_HW4.DAL; // SaveMessage metodunu çağırmak için
+using System;
 
 namespace Oguzhan_Sarigol_HW4.Hubs
 {
@@ -9,13 +10,19 @@ namespace Oguzhan_Sarigol_HW4.Hubs
         public void Send(string senderUsername, string receiverUsername, string message)
         {
             // Alıcıya mesajı gönder
-            Clients.User(receiverUsername).receiveMessage(senderUsername, message);
+            Clients.User(receiverUsername).receiveMessage(senderUsername, message, DateTime.Now.ToString("g"), false);
+
 
             // Gönderene de aynı mesajı yansıt
-            Clients.Caller.receiveMessage(senderUsername, message);
+            Clients.Caller.receiveMessage(senderUsername, message, DateTime.Now.ToString("g"), true);
+
 
             // Veritabanına kaydet
             DatabaseHelper.SaveMessage(senderUsername, receiverUsername, message);
+        }
+        public void NotifyTyping(string senderUsername, string receiverUsername)
+        {
+            Clients.User(receiverUsername).showTyping(senderUsername);
         }
 
         public override Task OnConnected()
