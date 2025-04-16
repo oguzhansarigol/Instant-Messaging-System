@@ -116,8 +116,8 @@
                 <div id="loadingText" class="loading-text">3D Model yükleniyor...</div>
                 
                 <div class="login-box">
-                    <h2>Hello !</h2>
-                    <h2>Welcome Back</h2>
+                    <h2>Welcome to</h2>
+                    <h2>MedConnect</h2>
                     <asp:TextBox ID="txtUsername" runat="server" placeholder="Enter Username" CssClass="form-input" />
                     <asp:TextBox ID="txtPassword" runat="server" placeholder="Enter Password" TextMode="Password" CssClass="form-input" />
                     

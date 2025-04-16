@@ -71,13 +71,30 @@ namespace Oguzhan_Sarigol_HW4
                 bool isRead = Convert.ToBoolean(row["IsRead"]);
                 bool isMine = senderId == myId;
 
-                // Yeni mesaj formatını kullanarak eski mesajları ekle
-                string script = $"$('#chatBox').append(formatOldMessage({Newtonsoft.Json.JsonConvert.SerializeObject(senderName)}, " +
-                            $"{Newtonsoft.Json.JsonConvert.SerializeObject(message)}, " +
-                            $"{Newtonsoft.Json.JsonConvert.SerializeObject(time)}, " +
-                            $"{isRead.ToString().ToLower()}, " +
-                            $"{isMine.ToString().ToLower()}));";
+                // Doğrudan HTML oluştur ve script olarak ekle
+                string iconHtml = "";
+                if (isMine)
+                {
+                    iconHtml = isRead
+                        ? "<i class='fas fa-check-double' style='color:deepskyblue; font-size:11px; margin-left:4px;'></i>"
+                        : "<i class='fas fa-check' style='color:gray; font-size:11px; margin-left:4px;'></i>";
+                }
 
+                string messageType = isMine ? "message-outgoing" : "message-incoming";
+                string messageHtml = $@"
+            <div class='message {messageType}'>
+                <div class='message-bubble'>
+                    <div class='message-sender'>{senderName}</div>
+                    <div class='message-content'>{message}</div>
+                    <div class='message-meta'>
+                        <span class='message-time'>{time}</span>
+                        {iconHtml}
+                    </div>
+                </div>
+            </div>";
+
+                // HTML'i doğrudan ekleyen script
+                string script = $"$('#chatBox').append({Newtonsoft.Json.JsonConvert.SerializeObject(messageHtml)});";
                 ScriptManager.RegisterStartupScript(this, GetType(), Guid.NewGuid().ToString(), script, true);
             }
         }

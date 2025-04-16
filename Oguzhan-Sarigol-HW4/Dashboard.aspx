@@ -348,6 +348,11 @@
                 margin-left: 80px;
             }
         }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
 
         @media (max-width: 768px) {
             .dashboard-stats {
@@ -370,8 +375,10 @@
         <div class="dashboard-container">
             <div class="sidebar">
                 <div class="logo">
-                    <h2><i class="fas fa-heartbeat"></i> <span>MedConnect</span></h2>
+                    <img src="Content/logo.png" alt="MedConnect Logo" style="max-width: 150px; height: auto;" />
                 </div>
+
+
                 <div class="sidebar-menu">
                     <div class="menu-item active">
                         <i class="fas fa-home"></i>
