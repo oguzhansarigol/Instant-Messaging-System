@@ -96,6 +96,53 @@ namespace Oguzhan_Sarigol_HW4.DAL
                 }
             }
         }
+        public static DataRow GetUserById(int userId)
+        {
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT * FROM USERS WHERE UserID = ?";
+                OleDbCommand cmd = new OleDbCommand(query, conn);
+                cmd.Parameters.AddWithValue("?", userId);
+
+                OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                    return dt.Rows[0];
+                return null;
+            }
+        }
+
+        public static bool UpdateUserProfile(int userId, string fullName, string email, string password)
+        {
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                conn.Open();
+                string query;
+                OleDbCommand cmd;
+
+                if (!string.IsNullOrEmpty(password))
+                {
+                    query = "UPDATE USERS SET FullName=?, Email=?, Password=? WHERE UserID=?";
+                    cmd = new OleDbCommand(query, conn);
+                    cmd.Parameters.AddWithValue("?", fullName);
+                    cmd.Parameters.AddWithValue("?", email);
+                    cmd.Parameters.AddWithValue("?", password); // basit şifreleme önerilir
+                }
+                else
+                {
+                    query = "UPDATE USERS SET FullName=?, Email=? WHERE UserID=?";
+                    cmd = new OleDbCommand(query, conn);
+                    cmd.Parameters.AddWithValue("?", fullName);
+                    cmd.Parameters.AddWithValue("?", email);
+                }
+
+                cmd.Parameters.AddWithValue("?", userId);
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
 
         public static void SaveMessage(string senderUsername, string receiverUsername, string message)
         {

@@ -384,6 +384,12 @@
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </div>
+                    <a href="Profile.aspx" style="text-decoration: none; color: inherit;">
+                        <div class="menu-item">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </div>
+                    </a>
                     <div class="menu-item">
                         <i class="fas fa-user-md"></i>
                         <span>Doctors</span>
@@ -418,6 +424,7 @@
                                 <asp:Label ID="lblNameShort" runat="server" />
                             </div>
                         </div>
+
                         <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn-logout" OnClick="btnLogout_Click" />
 
 
